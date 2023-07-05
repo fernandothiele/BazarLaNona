@@ -1,7 +1,7 @@
 import { stringify } from "querystring";
 import React, { useState } from "react";
 
-export default function Login({ setToken }) {
+export default function Login(prop) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
@@ -17,7 +17,10 @@ export default function Login({ setToken }) {
       .then(result => {
         // Credenciales válidas
         const token = String(user.nombre);
-        setToken(token);
+        console.log("Result:", result[0].tipo_cuenta);
+        const tipo = String(result[0].tipo_cuenta);
+        prop.setToken(token);
+        prop.setTipo(tipo);
       })
       .catch(error => {
         // Credenciales inválidas
@@ -27,6 +30,17 @@ export default function Login({ setToken }) {
 
 
   };
+
+
+  function mostrarContraseña() {
+    var tipo = document.getElementById("password");
+    if (tipo.type === "password") {
+      tipo.type = "text";
+    } else {
+      tipo.type = "password";
+    }
+  }
+
 
   return (
     <div>
@@ -48,6 +62,13 @@ export default function Login({ setToken }) {
             id="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
+          />
+          <label htmlFor="mostrar">Mostrar Contraseña</label>
+          <input
+            type="checkbox"
+            name="mostrar"
+            id="mostrar"
+            onClick={mostrarContraseña}
           />
         </div>
         <button type="submit">Login</button>

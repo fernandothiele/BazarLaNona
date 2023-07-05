@@ -1,18 +1,24 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 export default function Register() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const [email, setEmail] = useState('');
+  const [tipoCuenta, setTipoCuenta] = useState('');
+
+
+  //use effect para tipo de cuenta automaticamente es tipo empleado
+  useEffect(() => {
+    setTipoCuenta("empleado");
+  },[]);
 
   const handleRegister = (e) => {
     e.preventDefault();
-    console.log(username, password, email);
+    console.log(username, password,tipoCuenta);
 
     const user = {
       nombre: username,
       contraseña: password,
-      correo: email
+      tipo_cuenta: tipoCuenta,
     };
 
     try{
@@ -23,10 +29,18 @@ export default function Register() {
     } finally {
       setUsername('');
       setPassword('');
-      setEmail('');
+      setTipoCuenta('');
     }
-
   };
+
+  function mostrarContraseña(){
+    var tipo = document.getElementById("password");
+    if(tipo.type === "password"){
+      tipo.type = "text";
+    }else{
+      tipo.type = "password";
+    }
+  }
 
   return (
     <>
@@ -53,16 +67,19 @@ export default function Register() {
             minLength={8}
             onChange={(e) => setPassword(e.target.value)}
           />
+          <label htmlFor="mostrar">Mostrar Contraseña</label>
+          <input type="checkbox" name="mostrar" id="mostrar" onClick={mostrarContraseña}/>
         </div>
         <div>
-          <label htmlFor="email">Email:</label>
-          <input
-            type="email"
-            id="email"
-            value={email}
+        <label htmlFor="tipoCuenta">Tipo de Cuenta</label>
+          <select name="tipoCuenta" id="tipoCuenta"
+            value={tipoCuenta}
             required
-            onChange={(e) => setEmail(e.target.value)}
-          />
+            onChange={(e) => {setTipoCuenta(e.target.value);console.log(e.target.value);console.log("Tipo de Cuenta",tipoCuenta)}}
+            >
+            <option value="empleado">Empleado</option>
+            <option value="jefedeventa">Jefe de Venta</option>
+          </select>
         </div>
         <button type="submit">Register</button>
       </form>

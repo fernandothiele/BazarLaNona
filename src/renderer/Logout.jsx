@@ -1,7 +1,8 @@
 import React  from 'react';
 
 export default function Logout(){
-    localStorage.removeItem('token');
+    sessionStorage.removeItem('token');
+    sessionStorage.removeItem('tipo_cuenta');
     window.location.href = '';
    
     return (
