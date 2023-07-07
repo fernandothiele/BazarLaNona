@@ -1,19 +1,40 @@
+//Importar Funciones relacionadas con React y distintos modulos node
 import { MemoryRouter as Router, Routes, Route, NavLink, HashRouter } from 'react-router-dom';
+import { useEffect } from 'react'; 
+// Importar Funcion de Tokens
 import useToken from './useToken.jsx';
 import useTipo from './useTokenTC.jsx'
+import useCaja from './cajaToken.jsx';
+//-----------------------------------------
+//Importar Componentes generales
 import Home from './Home.jsx';
-import Protected from './Protected.jsx';
 import Login from './login.jsx';
 import Logout from './Logout.jsx';
 import Register from './register.jsx';
-import Empleado from './empleado.jsx';
-import Jefe from './jefe.jsx';
+import Caja from './caja.jsx';
+//-----------------------------------------
+//Componentes boleta
+import Boleta from './boleta.jsx';
+//-----------------------------------------
+//Componentes Jefe de Ventas
+import Factura from './factura.jsx';
+//-----------------------------------------
+
+
 
 function App() {
   const { token, setToken } = useToken();
   const { tipo, setTipo } = useTipo();
+  const { caja, setCaja } = useCaja();
+
+  
+
+
+
+
   console.log("App: token: ", token);
   console.log("App: tipo: ", tipo);
+  console.log("Caja",caja)
 
   return (
     <div>
@@ -34,21 +55,23 @@ function App() {
                 <li>
                   <NavLink to="/">Home</NavLink>
                 </li>
-                <li>
-                  <NavLink to="/protected">Protected</NavLink>
-                </li>
-                <li>
-                  <NavLink to="/logout">Logout</NavLink>
-                </li>
                 {tipo === "empleado" ? (
                   <li>
-                  <NavLink to="/empleado">Empleado</NavLink>
+                  <NavLink to="/boleta">Generar Boleta</NavLink>
                   </li>
                     ) : (
+                  <>
                   <li>
-                    <NavLink to="/jefe">Jefe</NavLink>
+                    <NavLink to="/factura">Generar Factura</NavLink>
+                    
                   </li>
-                    )}
+                  <li>
+                    <Caja caja={caja} setCaja={setCaja}/>
+                  </li>
+                  </>)}
+                <li>
+                  <Logout/>
+                </li>
               </>
             )}
           </ul>
@@ -56,7 +79,7 @@ function App() {
 
         <div>
           <div>
-            <span>Welcome!</span> {token ? token.username : "Guest"}
+            <span>Welcome!</span> {token ? token : "Guest"}
           </div>
 
           <Routes>
@@ -68,12 +91,10 @@ function App() {
             ) : (
               <>
                 <Route path="/" element={<Home />} />
-                <Route path="/protected" element={<Protected />} />
-                <Route path="/logout" element={<Logout />} />
                 {tipo === "empleado" ? (
-                  <Route path="/empleado" element={<Empleado />} />
+                  <Route path="/boleta" element={<Boleta caja={caja}/>} />
                 ) : (
-                  <Route path="/jefe" element={<Jefe />} />
+                  <Route path="/factura" element={<Factura />} />
                 )}
               </>
             )}
