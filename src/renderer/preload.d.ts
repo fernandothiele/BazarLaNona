@@ -10,6 +10,9 @@ declare global {
     login: {
       loginUser(user: any): Promise<any>;
     };
+    añadir: {
+      añadirProducto(producto: any): Promise<any>;
+    };
   }
 }
 

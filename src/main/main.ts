@@ -155,6 +155,17 @@ app
       } 
     });
 
+    ipcMain.handle('añadirProducto', async (event, producto) => {
+      try {
+        await (await connection).connect();
+        const añadirProducto = await import('../lib/añadirProducto'); // import function from lib folder dynamically at runtime (when the ipcMain.handle is called)
+        const result = await añadirProducto.default(producto);
+        return result;
+      } catch (error) {
+        throw error;
+      }
+    });
+
 
 
 
