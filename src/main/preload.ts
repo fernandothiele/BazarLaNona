@@ -53,4 +53,22 @@ contextBridge.exposeInMainWorld('añadir', {
   }
 });
 
+contextBridge.exposeInMainWorld('consultar', {
+  consultarInv() {
+    return ipcRenderer.invoke('consultarInv');
+  }
+});
+
+contextBridge.exposeInMainWorld('Venta', {
+  añadirVenta(venta: any) {
+    return ipcRenderer.invoke('añadirVenta', venta);
+  }
+});
+
+contextBridge.exposeInMainWorld('Boleta', {
+  añadirBoleta(boleta: any) {
+    return ipcRenderer.invoke('añadirBoleta', boleta);
+  }
+});
+
 export type ElectronHandler = typeof electronHandler;
