@@ -19,6 +19,8 @@ export default function AñadirProducto(){
     const [precio, setPrecio] = useState('');
     const [cantidad, setCantidad] = useState('');
 
+    
+
 
 
 
