@@ -155,50 +155,6 @@ app
       } 
     });
 
-    ipcMain.handle('añadirProducto', async (event, producto) => {
-      try {
-        await (await connection).connect();
-        const añadirProducto = await import('../lib/añadirProducto'); // import function from lib folder dynamically at runtime (when the ipcMain.handle is called)
-        const result = await añadirProducto.default(producto);
-        return result;
-      } catch (error) {
-        throw error;
-      }
-    });
-
-    ipcMain.handle('consultarInv', async (event) => {
-      try {
-        await (await connection).connect();
-        const consultarInv = await import('../lib/consultarInv'); // import function from lib folder dynamically at runtime (when the ipcMain.handle is called)
-        const result = await consultarInv.default();
-        return result;
-      } catch (error) {
-        throw error;
-      }
-    });
-
-    ipcMain.handle('añadirVenta', async (event, venta) => {
-      try {
-        await (await connection).connect();
-        const añadirVenta = await import('../lib/añadirVenta'); // import function from lib folder dynamically at runtime (when the ipcMain.handle is called)
-        const result = await añadirVenta.default(venta);
-        return result;
-      } catch (error) {
-        throw error;
-      }
-    });
-
-    ipcMain.handle('añadirBoleta', async (event, boleta) => {
-      try {
-        await (await connection).connect();
-        const añadirBoleta = await import('../lib/añadirBoleta'); // import function from lib folder dynamically at runtime (when the ipcMain.handle is called)
-        const result = await añadirBoleta.default(boleta);
-        return result;
-      } catch (error) {
-        throw error;
-      }
-    });
-
 
 
 
