@@ -13,6 +13,15 @@ declare global {
     añadir: {
       añadirProducto(producto: any): Promise<any>;
     };
+    consultar: {
+      consultarInv(): Promise<any>;
+    };
+    venta:{
+      añadirVenta(venta: any): Promise<any>;
+    };
+    boleta:{
+      añadirBoleta(boleta: any): Promise<any>;
+    }
   }
 }
 
