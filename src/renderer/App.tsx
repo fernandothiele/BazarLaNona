@@ -18,6 +18,8 @@ import Boleta from './boleta.jsx';
 //-----------------------------------------
 //Componentes Jefe de Ventas
 import Factura from './factura.jsx';
+import AñadirProducto from './añadirProducto.jsx';
+import añadirProducto from 'lib/añadirProducto.js';
 //-----------------------------------------
 
 
@@ -63,7 +65,9 @@ function App() {
                   <>
                   <li>
                     <NavLink to="/factura">Generar Factura</NavLink>
-                    
+                  </li>
+                  <li>
+                    <NavLink to="/añadirProducto">Añadir Producto</NavLink>
                   </li>
                   <li>
                     <Caja caja={caja} setCaja={setCaja}/>
@@ -94,7 +98,10 @@ function App() {
                 {tipo === "empleado" ? (
                   <Route path="/boleta" element={<Boleta caja={caja}/>} />
                 ) : (
+                  <>
                   <Route path="/factura" element={<Factura />} />
+                  <Route path='/añadirProducto' element={<AñadirProducto />}/>
+                  </>
                 )}
               </>
             )}

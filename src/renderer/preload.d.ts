@@ -10,6 +10,18 @@ declare global {
     login: {
       loginUser(user: any): Promise<any>;
     };
+    añadir: {
+      añadirProducto(producto: any): Promise<any>;
+    };
+    consultar: {
+      consultarInv(): Promise<any>;
+    };
+    venta:{
+      añadirVenta(venta: any): Promise<any>;
+    };
+    boleta:{
+      añadirBoleta(boleta: any): Promise<any>;
+    }
   }
 }
 
