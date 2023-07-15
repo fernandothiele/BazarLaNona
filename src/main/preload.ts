@@ -34,7 +34,6 @@ export const electronHandler = {
 };
 
 contextBridge.exposeInMainWorld('electron', electronHandler);
-
 contextBridge.exposeInMainWorld('registrar', {
   registerUser(user: any) {
     return ipcRenderer.invoke('registerUser', user);
@@ -44,30 +43,6 @@ contextBridge.exposeInMainWorld('registrar', {
 contextBridge.exposeInMainWorld('login', {
   loginUser(user: any) {
     return ipcRenderer.invoke('loginUser', user);
-  }
-});
-
-contextBridge.exposeInMainWorld('añadir', {
-  añadirProducto(producto: any) {
-    return ipcRenderer.invoke('añadirProducto', producto);
-  }
-});
-
-contextBridge.exposeInMainWorld('consultar', {
-  consultarInv() {
-    return ipcRenderer.invoke('consultarInv');
-  }
-});
-
-contextBridge.exposeInMainWorld('Venta', {
-  añadirVenta(venta: any) {
-    return ipcRenderer.invoke('añadirVenta', venta);
-  }
-});
-
-contextBridge.exposeInMainWorld('Boleta', {
-  añadirBoleta(boleta: any) {
-    return ipcRenderer.invoke('añadirBoleta', boleta);
   }
 });
 
