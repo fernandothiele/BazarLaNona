@@ -99,7 +99,7 @@ function App() {
                   <Route path="/boleta" element={<Boleta caja={caja}/>} />
                 ) : (
                   <>
-                  <Route path="/factura" element={<Factura />} />
+                  <Route path="/factura" element={<Factura caja={caja}/>} />
                   <Route path='/añadirProducto' element={<AñadirProducto />}/>
                   </>
                 )}

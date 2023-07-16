@@ -21,7 +21,13 @@ declare global {
     };
     boleta:{
       añadirBoleta(boleta: any): Promise<any>;
-    }
+    };
+    factura:{
+      añadirFactura(factura: any): Promise<any>;
+    };
+    detalle:{
+      añadirDetalleFactura(detalle: any): Promise<any>;
+    };
   }
 }
 

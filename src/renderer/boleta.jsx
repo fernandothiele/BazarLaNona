@@ -64,11 +64,12 @@ export default function Boleta({ caja }) {
     } catch (error) {
       console.log("Error al registrar:", error);
     }
+    await setTotalFinal(0);
   }
 
   function handleProductoSeleccionado(e) {
     const productoPrecio = Number(e.target.value);
-    if(productoPrecio>0){
+    if (productoPrecio > 0) {
       let producto = document.createElement("div");
       let nombreP = document.createElement("p");
       nombreP.innerHTML = e.target.options[e.target.selectedIndex].text;
@@ -76,17 +77,26 @@ export default function Boleta({ caja }) {
       precioP.innerHTML = productoPrecio;
       producto.appendChild(nombreP);
       producto.appendChild(precioP);
+  
+      let elmbtn = document.createElement("button");
+      elmbtn.innerHTML = "Eliminar";
+      elmbtn.id = "btnEliminar";
+      elmbtn.onclick = function () {
+        setTotalFinal((prevTotal) => prevTotal - productoPrecio);
+        producto.remove();
+      };
+      producto.appendChild(elmbtn);
+  
       document.getElementById("InventarioBoleta").appendChild(producto);
-
-      setTotalFinal(total_final + productoPrecio);
+  
+      setTotalFinal((prevTotal) => prevTotal + productoPrecio);
     }
-    
   }
 
   return (
     <>
       <h1>Generar Boleta</h1>
-      <form onSubmit={handleBoleta} id="formBoleta">
+      <form onSubmit={handleBoleta} id="form">
         <select name="productos" id="productos" onChange={handleProductoSeleccionado}>
           <option value="0" id={0}>Seleccione un producto</option>
           {inventario.map((producto) => (

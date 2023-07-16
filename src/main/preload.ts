@@ -71,4 +71,16 @@ contextBridge.exposeInMainWorld('Boleta', {
   }
 });
 
+contextBridge.exposeInMainWorld('factura', {
+  añadirFactura(factura: any) {
+    return ipcRenderer.invoke('añadirFactura', factura);
+  }
+});
+
+contextBridge.exposeInMainWorld('detalle',{
+  añadirDetalleFactura(detalle: any) {
+    return ipcRenderer.invoke('añadirDetalleFactura', detalle);
+  }
+});
+
 export type ElectronHandler = typeof electronHandler;

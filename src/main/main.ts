@@ -199,6 +199,28 @@ app
       }
     });
 
+    ipcMain.handle('añadirFactura', async (event, factura) => {
+      try {
+        await (await connection).connect();
+        const añadirFactura = await import('../lib/añadirFactura'); // import function from lib folder dynamically at runtime (when the ipcMain.handle is called)
+        const result = await añadirFactura.default(factura);
+        return result;
+      } catch (error) {
+        throw error;
+      }
+    });
+
+    ipcMain.handle('añadirDetalleFactura', async (event, detalleFactura) => {
+      try {
+        await (await connection).connect();
+        const añadirDetalleFactura = await import('../lib/detalleFactura'); // import function from lib folder dynamically at runtime (when the ipcMain.handle is called)
+        const result = await añadirDetalleFactura.default(detalleFactura);
+        return result;
+      } catch (error) {
+        throw error;
+      }
+    });
+
 
 
 
