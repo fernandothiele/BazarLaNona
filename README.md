@@ -73,7 +73,7 @@ CREATE TABLE Boleta (
 );
 ```
 # Modelo SQL
-![Modelo Base de Datos](https://drive.google.com/file/d/1HPmq2JTi4jVvtdAMFDJjSKatIB7s9nDr/view?usp=sharing)
+![base de datos](https://github.com/fernandothiele/BazarLaNona/assets/133150948/fbe94620-c598-4151-9a3c-7c7edf0be64b)
 
 
 # Modificar conexión MySQL
