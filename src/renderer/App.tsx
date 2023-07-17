@@ -19,7 +19,7 @@ import Boleta from './boleta.jsx';
 //Componentes Jefe de Ventas
 import Factura from './factura.jsx';
 import AñadirProducto from './añadirProducto.jsx';
-import añadirProducto from 'lib/añadirProducto.js';
+import BusquedaVenta from './Busqueda.jsx';
 //-----------------------------------------
 
 
@@ -34,9 +34,9 @@ function App() {
 
 
 
-  console.log("App: token: ", token);
-  console.log("App: tipo: ", tipo);
-  console.log("Caja",caja)
+  // console.log("App: token: ", token);
+  // console.log("App: tipo: ", tipo);
+  // console.log("Caja",caja)
 
   return (
     <div>
@@ -70,6 +70,9 @@ function App() {
                     <NavLink to="/añadirProducto">Añadir Producto</NavLink>
                   </li>
                   <li>
+                    <NavLink to="/buscar">Buscar Venta</NavLink>
+                  </li>
+                  <li>
                     <Caja caja={caja} setCaja={setCaja}/>
                   </li>
                   </>)}
@@ -101,6 +104,7 @@ function App() {
                   <>
                   <Route path="/factura" element={<Factura caja={caja}/>} />
                   <Route path='/añadirProducto' element={<AñadirProducto />}/>
+                  <Route path='/buscar' element={<BusquedaVenta />}/>
                   </>
                 )}
               </>

@@ -28,6 +28,12 @@ declare global {
     detalle:{
       añadirDetalleFactura(detalle: any): Promise<any>;
     };
+    buscarventa: {
+      consultarVentas(busqueda: any): Promise<any>;
+    };
+    empleados: {
+      consultarEmpleados(): Promise<any>;
+    };
   }
 }
 

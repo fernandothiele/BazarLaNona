@@ -144,6 +144,17 @@ app
       }
     });
 
+    ipcMain.handle('consultarEmpleados', async (event) => {
+      try {
+        await (await connection).connect();
+        const consultarEmpleado = await import('../lib/consultaEmpleados'); // import function from lib folder dynamically at runtime (when the ipcMain.handle is called)
+        const result = await consultarEmpleado.default();
+        return result;
+      } catch (error) {
+        throw error;
+      }
+    });
+
     ipcMain.handle('loginUser', async (event, user) => {
       try {
         await (await connection).connect();
@@ -182,6 +193,17 @@ app
         await (await connection).connect();
         const añadirVenta = await import('../lib/añadirVenta'); // import function from lib folder dynamically at runtime (when the ipcMain.handle is called)
         const result = await añadirVenta.default(venta);
+        return result;
+      } catch (error) {
+        throw error;
+      }
+    });
+
+    ipcMain.handle('consultarVentas', async (event, busqueda) => {
+      try {
+        await (await connection).connect();
+        const consultarVentas = await import('../lib/consultarVentas'); // import function from lib folder dynamically at runtime (when the ipcMain.handle is called)
+        const result = await consultarVentas.default(busqueda);
         return result;
       } catch (error) {
         throw error;

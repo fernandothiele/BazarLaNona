@@ -83,4 +83,16 @@ contextBridge.exposeInMainWorld('detalle',{
   }
 });
 
+contextBridge.exposeInMainWorld('buscarventa', {
+  consultarVentas(busqueda: any) {
+    return ipcRenderer.invoke('consultarVentas', busqueda);
+  }
+});
+
+contextBridge.exposeInMainWorld('empleados', {
+  consultarEmpleados(){
+    return ipcRenderer.invoke('consultarEmpleados');
+  }
+});
+
 export type ElectronHandler = typeof electronHandler;

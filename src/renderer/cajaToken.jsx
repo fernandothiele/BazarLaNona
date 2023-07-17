@@ -1,22 +1,31 @@
 import { useState } from 'react';
 
 export default function useCaja() {
+  const [caja, setCaja] = useState(null);
+
   const getToken = () => {
-    const tokenString = localStorage.getItem('estado_caja');
-    const caja = JSON.parse(tokenString);
-    if (caja) {
-      return caja;
+    let cajaToken;
+    try {
+      const tokenString = localStorage.getItem('estado_caja');
+      cajaToken = JSON.parse(tokenString);
+    } catch (error) {
+      console.log("Error", error);
+      cajaToken = "Cerrada";
+    }
+    if (cajaToken) {
+      return cajaToken;
     } else {
-      setCaja("Cerrada")
-      return caja;
+      setCaja("Cerrada");
+      return "Cerrada";
     }
   };
 
-  const [caja, setCaja] = useState(getToken());
+  useState(() => {
+    setCaja(getToken());
+  }, []);
 
   const saveTipo = caja => {
     localStorage.setItem('estado_caja', JSON.stringify(caja));
-    
     setCaja(caja);
   };
 
