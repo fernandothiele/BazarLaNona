@@ -47,8 +47,9 @@ export default function Boleta({ caja }) {
 
   async function handleBoleta(e) {
     e.preventDefault();
-    const nombre_empleado = "pruebacuenta"; // sessionStorage.getItem('token');
-    const fecha = '2021-06-01';
+    const nombre_empleado = sessionStorage.getItem('token').replace(/['"]+/g, '');
+    const currentDate = new Date();
+    const fecha = `${currentDate.getFullYear()}-${String(currentDate.getMonth() + 1).padStart(2, '0')}-${String(currentDate.getDate()).padStart(2, '0')}`;
     const tipo_documento = "Boleta";
   
     const venta = { nombre_empleado, fecha, tipo_documento };
